@@ -1,0 +1,682 @@
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <configSections>
+    <section name="cacheManager" type="Sigma.Catalog.Caching.CacheManagerSectionHandler, Sigma.Catalog.Caching, Version=9.0.1.4, Culture=neutral, PublicKeyToken=cfa2c1ef2be18ddb"/>
+    <section name="system.identityModel" type="System.IdentityModel.Configuration.SystemIdentityModelSection, System.IdentityModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=B77A5C561934E089"/>
+    <section name="system.identityModel.services" type="System.IdentityModel.Services.Configuration.SystemIdentityModelServicesSection, System.IdentityModel.Services, Version=4.0.0.0, Culture=neutral, PublicKeyToken=B77A5C561934E089"/>
+    
+    <section name="OIDC" type="System.Configuration.AppSettingsSection, System.Configuration, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"/>
+    <section name="SAML_SSO" type="System.Configuration.AppSettingsSection, System.Configuration, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"/>
+    <section name="SAML_DEFAULT" type="System.Configuration.AppSettingsSection, System.Configuration, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"/>
+    <sectionGroup name="elmah">
+      <section name="security" requirePermission="false" type="Elmah.SecuritySectionHandler, Elmah"/>
+      <section name="errorLog" requirePermission="false" type="Elmah.ErrorLogSectionHandler, Elmah"/>
+      <section name="errorMail" requirePermission="false" type="Elmah.ErrorMailSectionHandler, Elmah"/>
+      <section name="errorFilter" requirePermission="false" type="Elmah.ErrorFilterSectionHandler, Elmah"/>
+    </sectionGroup>
+  </configSections>
+  <cacheManager>
+    <caches>
+      <add name="SchemaClass Cache" enabled="true"/>
+      <add name="NameToSchemaElement Cache" enabled="true"/>
+      <add name="NameToSchemaClass Cache" enabled="true"/>
+    </caches>
+  </cacheManager>
+  <OIDC>
+    <add key="PrimaryIdentificationAttribute" value=""/>
+    <add key="PrimaryGroupAttribute" value=""/>
+    <add key="PrimaryNameAttribute" value=""/>
+    <add key="PrimaryEmailAttribute" value=""/>
+    <add key="SecurityIdentifierAttribute" value=""/>
+    <add key="IdentityProviderEndpoint" value=""/>
+    <add key="IdentityProviderUserInfoEndpoint" value="https://dev-607180.okta.com/oauth2/default/v1/userinfo"/>
+    <add key="Issuer" value=""/>
+    <add key="AssertionConsumer" value=""/>
+    <add key="AssertionConsumerRetrieval" value=""/>
+    <add key="ResponseType" value=""/>
+    <add key="Scope" value=""/>
+    <add key="Nonce" value=""/>
+  </OIDC>
+  <SAML_SSO>
+    <add key="PrimaryIdentificationAttribute" value=""/>
+    <add key="PrimaryGroupAttribute" value=""/>
+    <add key="PrimaryNameAttribute" value=""/>
+    <add key="PrimaryEmailAttribute" value=""/>
+    <add key="SecurityIdentifierAttribute" value=""/>
+    <add key="IdentityProviderEndpoint" value=""/>
+    <add key="Issuer" value=""/>
+    <add key="AssertionConsumer" value=""/>
+    <add key="AssertionConsumerRetrieval" value=""/>
+  </SAML_SSO>
+  <SAML_DEFAULT>
+    <add key="PrimaryIdentificationAttribute" value="http://schemas.microsoft.com/ws/2008/06/identity/claims/primarysid"/>
+    <add key="PrimaryGroupAttribute" value="http://schemas.microsoft.com/ws/2008/06/identity/claims/groupsid"/>
+    <add key="PrimaryNameAttribute" value="http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"/>
+    <add key="PrimaryEmailAttribute" value="http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress"/>
+    <add key="SecurityIdentifierAttribute" value="http://schemas.microsoft.com/ws/2008/06/identity/claims/primarysid;http://schemas.microsoft.com/ws/2008/06/identity/claims/groupsid"/>
+    <add key="IdentityProviderEndpoint" value="https://identity-aws-vocdev.vocus.sigma-systems.com"/>
+    <add key="Issuer" value="https://identity-aws-vocdev.vocus.sigma-systems.com"/>
+  </SAML_DEFAULT>
+  <appSettings>
+    <add key="MinimumDatabaseVersion" value="9.0.1.1"/>
+    <add key="ApplicationVersion" value="9.0.1.5"/>
+    <add key="AuthenticationProtocol" value="SAML_DEFAULT"/>
+    <add key="owin:AutomaticAppStartup" value="false"/>
+    <add key="SiteCanonicalName" value="https://catalog-aws-vocdev.vocus.sigma-systems.com"/>
+    <add key="SiteInternalUrl" value="https://catalog-aws-vocdev.vocus.sigma-systems.com"/>
+    <add key="ExpiryTimeMinutes" value="2"/>
+    <add key="webpages:Version" value="3.0.0.0"/>
+    <add key="webpages:Enabled" value="false"/>
+    <add key="PreserveLoginUrl" value="true"/>
+    <add key="ClientValidationEnabled" value="true"/>
+    <add key="UnobtrusiveJavaScriptEnabled" value="true"/>
+    <add key="ServiceUserAdapterType" value="Sigma.Catalog.BusinessLogic.TokenServiceCurrentPrincipalAdapter, Sigma.Catalog.BusinessLogic, Version=9.0.1.4, Culture=neutral, PublicKeyToken=cfa2c1ef2be18ddb"/>
+    <add key="DatabaseConnectionProvider" value="Sigma.Catalog.Common.DBHelper.DatabaseUtilities, Sigma.Catalog.Common, Version=9.0.1.4, Culture=neutral, PublicKeyToken=cfa2c1ef2be18ddb"/>
+    <add key="spa:OffsetMillisecondsToRegetTokenBeforeItExpires" value="300000"/>
+    <!-- 3558000,300000  -->
+    <add key="spa:IdleTimeout" value="50"/>
+    <add key="spa:MaximumAllowedIdleTime" value="50"/>
+    <add key="spa:ActivityUpdateDbInterval" value="600"/>
+    <add key="spa:IdentityServiceUrl" value="https://identity-aws-vocdev.vocus.sigma-systems.com"/>
+    <add key="spa:ManagementServiceUrl" value="https://management-aws-vocdev.vocus.sigma-systems.com/server"/>
+    <add key="spa:ManagementAdapterUrl" value="https://management-aws-vocdev.vocus.sigma-systems.com/Adapter"/>
+    <add key="spa:DefaultRoute" value="#/Instances"/>
+    <add key="spa:LoginRoute" value="#/login"/>
+    <add key="spa:LogoutRoute" value="#/logout"/>
+    <add key="spa:AssertionRoute" value="#/assertion"/>
+    <add key="spa:MaxLoginAttempts" value="3"/>
+    <add key="spa:SearchResultsPerPage" value="10"/>
+    <add key="spa:MaxPageControlSize" value="10"/>
+    <add key="spa:LowerVisiblePageRange" value="5"/>
+    <add key="spa:HigherVisiblePageRange" value="4"/>
+    <add key="spa:NumberOfNotificationsToPreview" value="5"/>
+    <add key="spa:SearchResultPerPage" value="50"/>
+    <add key="spa:MaxSearchRecords" value="100"/>
+    <add key="ManagementPublishUrl" value="https://management-aws-vocdev.vocus.sigma-systems.com/server/api/jobs/pdppublish"/>
+    <add key="vs:EnableBrowserLink" value="false"/>
+    <add key="LogInterval" value="10"/>
+    <add key="TrustedIssuerCertificate" value="D2C161814E84B2137C81A80D97BA14A0ADF4CF41"/>
+    <add key="ClientId" value="Catalog"/>
+    <add key="IssuerAudiences" value="Workbench"/>
+    <add key="EnableClientLogging" value="false"/>
+    <!-- Kafka producer configuration -->
+    <add key="Kafka.BootstrapServer" value="localhost:9092"/>
+    <add key="Kafka.Topic" value="PublishJobs"/>
+    <add key="Kafka.MessageTimeoutMs" value="1000"/>
+    <add key="Kafka.SecurityProtocol" value="Plaintext"/>
+    <!-- Disabling SSL verification because of issue https://github.com/confluentinc/confluent-kafka-dotnet/issues/1374 -->
+    <add key="Kafka.EnableSslCertificateVerification" value="false"/>
+    <!-- Set the following values if the Kafka.EnableSslCertificateVerification is true -->
+    <add key="Kafka.SslCaLocation" value=""/>
+    <add key="Kafka.SslKeystoreLocation" value=""/>
+    <add key="Kafka.SslKeystorePassword" value=""/>
+  </appSettings>
+  <connectionStrings>
+    <add name="ErrorLog" connectionString="Data Source=(DB_SERVER_NAME);Initial Catalog=ELMAH;Integrated Security=SSPI;" providerName="System.Data.SqlClient"/>
+  </connectionStrings>
+  
+  <system.web>
+    <compilation targetFramework="4.7.2">
+      <assemblies>
+        <add assembly="netstandard, Version=2.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51"/>
+      </assemblies>
+    </compilation>
+    <globalization culture="auto" uiCulture="auto"/>
+    <sessionState timeout="60"></sessionState>
+    <httpCookies httpOnlyCookies="true" requireSSL="true"/>
+    <httpRuntime targetFramework="4.7.2" maxRequestLength="1048576"/>
+    <pages>
+      <namespaces>
+        <add namespace="System.Web.Helpers"/>
+        <add namespace="System.Web.Mvc"/>
+        <add namespace="System.Web.Mvc.Ajax"/>
+        <add namespace="System.Web.Mvc.Html"/>
+        <add namespace="System.Web.Routing"/>
+        <add namespace="System.Web.WebPages"/>
+        <add namespace="System.Web.Optimization"/>
+      </namespaces>
+    </pages>
+    <httpModules>
+      <add name="ErrorLog" type="Elmah.ErrorLogModule, Elmah"/>
+      <add name="ErrorMail" type="Elmah.ErrorMailModule, Elmah"/>
+      <add name="ErrorFilter" type="Elmah.ErrorFilterModule, Elmah"/>
+    </httpModules>
+  </system.web>
+  <system.webServer>
+    <validation validateIntegratedModeConfiguration="false"/>
+    <modules runAllManagedModulesForAllRequests="true">
+      <remove name="WebDAVModule"/>
+      <add name="ErrorLog" type="Elmah.ErrorLogModule, Elmah" preCondition="managedHandler"/>
+      <add name="ErrorMail" type="Elmah.ErrorMailModule, Elmah" preCondition="managedHandler"/>
+      <add name="ErrorFilter" type="Elmah.ErrorFilterModule, Elmah" preCondition="managedHandler"/>
+    </modules>
+    <staticContent>
+      <remove fileExtension=".json"/>
+      <mimeMap fileExtension=".json" mimeType="application/json"/>
+      <remove fileExtension=".svg"/>
+      <mimeMap fileExtension=".svg" mimeType="image/svg+xml"/>
+      <remove fileExtension=".woff"/>
+      <mimeMap fileExtension=".woff" mimeType="application/x-font-woff"/>
+    </staticContent>
+    <security>
+      <requestFiltering>
+        <requestLimits maxAllowedContentLength="1073741824"/>
+      </requestFiltering>
+    </security>
+    <handlers>
+      
+      
+      
+      
+      
+      
+      <remove name="ExtensionlessUrlHandler-Integrated-4.0"/>
+      <remove name="OPTIONSVerbHandler"/>
+      <remove name="TRACEVerbHandler"/>
+      <add name="ExtensionlessUrlHandler-Integrated-4.0" path="*." verb="*" type="System.Web.Handlers.TransferRequestHandler" preCondition="integratedMode,runtimeVersionv4.0"/>
+    </handlers>
+    <httpProtocol>
+      <customHeaders>
+        <add name="Access-Control-Allow-Origin" value="*"/>
+        <add name="Access-Control-Allow-Credentials" value="true"/>
+        <add name="Access-Control-Allow-Headers" value="Origin, X-Requested-With, Content-Type, Accept,X-Tribold-Connectioninstance, Authorization"/>
+        <add name="Access-Control-Allow-Methods" value="GET, HEAD, POST, DEBUG, PUT, DELETE, PATCH, OPTIONS"/>
+      </customHeaders>
+    </httpProtocol>
+  </system.webServer>
+  <system.serviceModel>
+    <diagnostics>
+      <messageLogging maxMessagesToLog="25000" logEntireMessage="true" logMessagesAtServiceLevel="true" logMalformedMessages="true" logMessagesAtTransportLevel="true">
+        <filters>
+          <clear/>
+        </filters>
+      </messageLogging>
+    </diagnostics>
+    <serviceHostingEnvironment multipleSiteBindingsEnabled="true" aspNetCompatibilityEnabled="true"/>
+    <extensions>
+      <behaviorExtensions>
+        <add name="webCertificateHttp" type="Sigma.Catalog.Common.ServiceModel.Configuration.WebCertificateHttpEndpointElement, Sigma.Catalog.Common.ServiceModel, Version=9.0.1.4, Culture=neutral, PublicKeyToken=cfa2c1ef2be18ddb"/>
+      </behaviorExtensions>
+      <bindingExtensions>
+        <add name="webCertificateHttpBinding" type="Sigma.Catalog.Common.ServiceModel.Configuration.WebCertificateHttpBindingSectionElement, Sigma.Catalog.Common.ServiceModel, Version=9.0.1.4, Culture=neutral, PublicKeyToken=cfa2c1ef2be18ddb"/>
+      </bindingExtensions>
+    </extensions>
+    <behaviors>
+      <serviceBehaviors>
+        <behavior name="defaultSecuredServiceBehaviour">
+          <serviceMetadata httpsGetEnabled="true"/>
+          <serviceAuthorization principalPermissionMode="Always"/>
+          <serviceCredentials useIdentityConfiguration="true">
+            <serviceCertificate storeName="My" storeLocation="LocalMachine" x509FindType="FindByThumbprint" findValue="D2C161814E84B2137C81A80D97BA14A0ADF4CF41"/>
+          </serviceCredentials>
+        </behavior>
+      </serviceBehaviors>
+      <endpointBehaviors>
+        <behavior name="certificateHttp">
+          <webCertificateHttp/>
+        </behavior>
+      </endpointBehaviors>
+    </behaviors>
+    <bindings>
+      <ws2007FederationHttpBinding>
+        <binding name="defaultws2007FederationHttpBinding" closeTimeout="00:05:00" openTimeout="00:05:00" sendTimeout="00:05:00" maxReceivedMessageSize="1000000000">
+          <readerQuotas maxDepth="2147483647" maxStringContentLength="2147483647" maxArrayLength="2147483647" maxBytesPerRead="2147483647" maxNameTableCharCount="2147483647"/>
+          <security mode="TransportWithMessageCredential">
+            <message algorithmSuite="Default" establishSecurityContext="false" negotiateServiceCredential="true">
+              <claimTypeRequirements>
+                <add claimType="http://schemas.identity.internal.hansencx.com/identity/claims/organizationid" isOptional="false"/>
+                <add claimType="http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress" isOptional="false"/>
+                <add claimType="http://schemas.microsoft.com/ws/2008/06/identity/claims/primarysid" isOptional="false"/>
+                <add claimType="http://schemas.microsoft.com/ws/2008/06/identity/claims/groupsid" isOptional="true"/>
+              </claimTypeRequirements>
+              <issuer address="https://identity-aws-vocdev.vocus.sigma-systems.com/Issue/WsTrust/wsTrustUserName" binding="ws2007HttpBinding" bindingConfiguration="wsTrust13UserNameBinding"/>
+            </message>
+          </security>
+        </binding>
+      </ws2007FederationHttpBinding>
+      <ws2007HttpBinding>
+        <binding name="wsTrust13UserNameBinding">
+          <security mode="TransportWithMessageCredential">
+            <message clientCredentialType="UserName" negotiateServiceCredential="true" algorithmSuite="Default" establishSecurityContext="false"/>
+          </security>
+        </binding>
+        <binding name="defaultws2007HttpBinding">
+          <security mode="TransportWithMessageCredential">
+            <message clientCredentialType="UserName" negotiateServiceCredential="true" algorithmSuite="Default" establishSecurityContext="false"/>
+          </security>
+        </binding>
+      </ws2007HttpBinding>
+      <webCertificateHttpBinding>
+        <binding name="certificateHttpBinding">
+          <security mode="Transport"/>
+          <certificateReference storeName="My" storeLocation="LocalMachine" x509FindType="FindByThumbprint" findValue="D2C161814E84B2137C81A80D97BA14A0ADF4CF41"/>
+        </binding>
+      </webCertificateHttpBinding>
+    </bindings>
+    <services>
+      <service name="Sigma.Catalog.BusinessLogic.AnnotationService" behaviorConfiguration="defaultSecuredServiceBehaviour">
+        <endpoint binding="ws2007FederationHttpBinding" bindingConfiguration="defaultws2007FederationHttpBinding" contract="Sigma.Catalog.Contracts.IAnnotationService"/>
+        <endpoint address="mex" binding="mexHttpsBinding" contract="IMetadataExchange"/>
+      </service>
+      <service name="Sigma.Catalog.BusinessLogic.Security.AuthorizationService" behaviorConfiguration="defaultSecuredServiceBehaviour">
+        <endpoint binding="ws2007FederationHttpBinding" bindingConfiguration="defaultws2007FederationHttpBinding" contract="Sigma.Catalog.Contracts.Security.ISecurityMgmtService"/>
+        <endpoint binding="ws2007FederationHttpBinding" bindingConfiguration="defaultws2007FederationHttpBinding" contract="Sigma.Catalog.Contracts.Security.ISecurityService"/>
+        <endpoint address="mex" binding="mexHttpsBinding" contract="IMetadataExchange"/>
+      </service>
+      <service name="Sigma.Catalog.BusinessLogic.BrokerIDMappingService" behaviorConfiguration="defaultSecuredServiceBehaviour">
+        <endpoint binding="ws2007FederationHttpBinding" bindingConfiguration="defaultws2007FederationHttpBinding" contract="Sigma.Catalog.Contracts.IBrokerIDMappingService"/>
+        <endpoint address="mex" binding="mexHttpsBinding" contract="IMetadataExchange"/>
+      </service>
+      <service name="Sigma.Catalog.BusinessLogic.CategorisableTypeService" behaviorConfiguration="defaultSecuredServiceBehaviour">
+        <endpoint binding="ws2007FederationHttpBinding" bindingConfiguration="defaultws2007FederationHttpBinding" contract="Sigma.Catalog.Contracts.ICategorisableTypeService"/>
+        <endpoint address="mex" binding="mexHttpsBinding" contract="IMetadataExchange"/>
+      </service>
+      <service name="Sigma.Catalog.BusinessLogic.CategoryDisplayInstanceClassService" behaviorConfiguration="defaultSecuredServiceBehaviour">
+        <endpoint binding="ws2007FederationHttpBinding" bindingConfiguration="defaultws2007FederationHttpBinding" contract="Sigma.Catalog.Contracts.ICategoryDisplayInstanceClassService"/>
+        <endpoint address="mex" binding="mexHttpsBinding" contract="IMetadataExchange"/>
+      </service>
+      <service name="Sigma.Catalog.BusinessLogic.CategoryService" behaviorConfiguration="defaultSecuredServiceBehaviour">
+        <endpoint binding="ws2007FederationHttpBinding" bindingConfiguration="defaultws2007FederationHttpBinding" contract="Sigma.Catalog.Contracts.ICategoryService"/>
+        <endpoint address="mex" binding="mexHttpsBinding" contract="IMetadataExchange"/>
+      </service>
+      <service name="Sigma.Catalog.BusinessLogic.CategoryTypeService" behaviorConfiguration="defaultSecuredServiceBehaviour">
+        <endpoint binding="ws2007FederationHttpBinding" bindingConfiguration="defaultws2007FederationHttpBinding" contract="Sigma.Catalog.Contracts.ICategoryTypeService"/>
+        <endpoint address="mex" binding="mexHttpsBinding" contract="IMetadataExchange"/>
+      </service>
+      <service name="Sigma.Catalog.BusinessLogic.CommonDataFunctionsService" behaviorConfiguration="defaultSecuredServiceBehaviour">
+        <endpoint binding="ws2007FederationHttpBinding" bindingConfiguration="defaultws2007FederationHttpBinding" contract="Sigma.Catalog.Contracts.ICommonDataFunctionsService"/>
+        <endpoint address="mex" binding="mexHttpsBinding" contract="IMetadataExchange"/>
+      </service>
+      <service name="Sigma.Catalog.BusinessLogic.ConfigService" behaviorConfiguration="defaultSecuredServiceBehaviour">
+        <endpoint binding="ws2007FederationHttpBinding" bindingConfiguration="defaultws2007FederationHttpBinding" contract="Sigma.Catalog.Contracts.IConfigService"/>
+        <endpoint address="mex" binding="mexHttpsBinding" contract="IMetadataExchange"/>
+      </service>
+      <service name="Sigma.Catalog.BusinessLogic.ChangeSetService" behaviorConfiguration="defaultSecuredServiceBehaviour">
+        <endpoint binding="ws2007FederationHttpBinding" bindingConfiguration="defaultws2007FederationHttpBinding" contract="Sigma.Catalog.Contracts.IChangeSetService"/>
+        <endpoint address="mex" binding="mexHttpsBinding" contract="IMetadataExchange"/>
+      </service>
+      <service name="Sigma.Catalog.BusinessLogic.CopyService" behaviorConfiguration="defaultSecuredServiceBehaviour">
+        <endpoint binding="ws2007FederationHttpBinding" bindingConfiguration="defaultws2007FederationHttpBinding" contract="Sigma.Catalog.Contracts.ICopyService"/>
+        <endpoint address="mex" binding="mexHttpsBinding" contract="IMetadataExchange"/>
+      </service>
+      <service name="Sigma.Catalog.BusinessLogic.CreateService" behaviorConfiguration="defaultSecuredServiceBehaviour">
+        <endpoint binding="ws2007FederationHttpBinding" bindingConfiguration="defaultws2007FederationHttpBinding" contract="Sigma.Catalog.Contracts.ICreateService"/>
+        <endpoint address="mex" binding="mexHttpsBinding" contract="IMetadataExchange"/>
+      </service>
+      <service name="Sigma.Catalog.BusinessLogic.DaemonDataService" behaviorConfiguration="defaultSecuredServiceBehaviour">
+        <endpoint binding="ws2007FederationHttpBinding" bindingConfiguration="defaultws2007FederationHttpBinding" contract="Sigma.Catalog.Contracts.IDaemonDataService"/>
+        <endpoint address="mex" binding="mexHttpsBinding" contract="IMetadataExchange"/>
+      </service>
+      <service name="Sigma.Catalog.BusinessLogic.DisplayInstanceClassService" behaviorConfiguration="defaultSecuredServiceBehaviour">
+        <endpoint binding="ws2007FederationHttpBinding" bindingConfiguration="defaultws2007FederationHttpBinding" contract="Sigma.Catalog.Contracts.IDisplayInstanceClassService"/>
+        <endpoint address="mex" binding="mexHttpsBinding" contract="IMetadataExchange"/>
+      </service>
+      <service name="Sigma.Catalog.BusinessLogic.DisplayEntityService" behaviorConfiguration="defaultSecuredServiceBehaviour">
+        <endpoint binding="ws2007FederationHttpBinding" bindingConfiguration="defaultws2007FederationHttpBinding" contract="Sigma.Catalog.Contracts.IDisplayEntityService"/>
+        <endpoint address="mex" binding="mexHttpsBinding" contract="IMetadataExchange"/>
+      </service>
+      <service name="Sigma.Catalog.BusinessLogic.HostedWorkflowDataService" behaviorConfiguration="defaultSecuredServiceBehaviour">
+        <endpoint binding="ws2007FederationHttpBinding" bindingConfiguration="defaultws2007FederationHttpBinding" contract="Sigma.Catalog.Contracts.IHostedWorkflowDataService"/>
+        <endpoint address="mex" binding="mexHttpsBinding" contract="IMetadataExchange"/>
+      </service>
+      <service name="Sigma.Catalog.BusinessLogic.SchemaClasses.DefaultValueService" behaviorConfiguration="defaultSecuredServiceBehaviour">
+        <endpoint binding="ws2007FederationHttpBinding" bindingConfiguration="defaultws2007FederationHttpBinding" contract="Sigma.Catalog.Contracts.IDefaultValueService"/>
+        <endpoint address="mex" binding="mexHttpsBinding" contract="IMetadataExchange"/>
+      </service>
+      <service name="Sigma.Catalog.BusinessLogic.InstanceClasses.DynamicDefaultValueService" behaviorConfiguration="defaultSecuredServiceBehaviour">
+        <endpoint binding="ws2007FederationHttpBinding" bindingConfiguration="defaultws2007FederationHttpBinding" contract="Sigma.Catalog.Contracts.IDynamicDefaultValueService"/>
+        <endpoint address="mex" binding="mexHttpsBinding" contract="IMetadataExchange"/>
+      </service>
+      <service name="Sigma.Catalog.BusinessLogic.EntityItemInfoService" behaviorConfiguration="defaultSecuredServiceBehaviour">
+        <endpoint binding="ws2007FederationHttpBinding" bindingConfiguration="defaultws2007FederationHttpBinding" contract="Sigma.Catalog.Contracts.IEntityItemInfoService"/>
+        <endpoint address="mex" binding="mexHttpsBinding" contract="IMetadataExchange"/>
+      </service>
+      <service name="Sigma.Catalog.BusinessLogic.LaunchEntityTypeManagement.LaunchEntityTypeManagementService" behaviorConfiguration="defaultSecuredServiceBehaviour">
+        <endpoint binding="ws2007FederationHttpBinding" bindingConfiguration="defaultws2007FederationHttpBinding" contract="Sigma.Catalog.Contracts.LaunchEntities.ILaunchEntityTypeManagementService"/>
+        <endpoint address="mex" binding="mexHttpsBinding" contract="IMetadataExchange"/>
+      </service>
+      <service name="Sigma.Catalog.BusinessLogic.LaunchStatusService" behaviorConfiguration="defaultSecuredServiceBehaviour">
+        <endpoint binding="ws2007FederationHttpBinding" bindingConfiguration="defaultws2007FederationHttpBinding" contract="Sigma.Catalog.Contracts.ILaunchStatusService"/>
+        <endpoint address="mex" binding="mexHttpsBinding" contract="IMetadataExchange"/>
+      </service>
+      <service name="Sigma.Catalog.Integration.LaunchCore.Launch.LaunchService" behaviorConfiguration="defaultSecuredServiceBehaviour">
+        <endpoint binding="ws2007FederationHttpBinding" bindingConfiguration="defaultws2007FederationHttpBinding" contract="Sigma.Catalog.Integration.LaunchCore.Launch.ILaunchService"/>
+        <endpoint address="mex" binding="mexHttpsBinding" contract="IMetadataExchange"/>
+      </service>
+      <service name="Sigma.Catalog.BusinessLogic.LifecycleService" behaviorConfiguration="defaultSecuredServiceBehaviour">
+        <endpoint binding="ws2007FederationHttpBinding" bindingConfiguration="defaultws2007FederationHttpBinding" contract="Sigma.Catalog.Contracts.ILifecycleService"/>
+        <endpoint address="mex" binding="mexHttpsBinding" contract="IMetadataExchange"/>
+      </service>
+      <service name="Sigma.Catalog.BusinessLogic.LockService" behaviorConfiguration="defaultSecuredServiceBehaviour">
+        <endpoint binding="ws2007FederationHttpBinding" bindingConfiguration="defaultws2007FederationHttpBinding" contract="Sigma.Catalog.Contracts.ILockService"/>
+        <endpoint address="mex" binding="mexHttpsBinding" contract="IMetadataExchange"/>
+      </service>
+      <service name="Sigma.Catalog.BusinessLogic.EntityService" behaviorConfiguration="defaultSecuredServiceBehaviour">
+        <endpoint binding="ws2007FederationHttpBinding" bindingConfiguration="defaultws2007FederationHttpBinding" contract="Sigma.Catalog.Contracts.IEntityService"/>
+        <endpoint address="mex" binding="mexHttpsBinding" contract="IMetadataExchange"/>
+      </service>
+      <service name="Sigma.Catalog.BusinessLogic.Publish.PublishService" behaviorConfiguration="defaultSecuredServiceBehaviour">
+        <endpoint binding="ws2007FederationHttpBinding" bindingConfiguration="defaultws2007FederationHttpBinding" contract="Sigma.Catalog.Contracts.IPublishService"/>
+        <endpoint address="mex" binding="mexHttpsBinding" contract="IMetadataExchange"/>
+      </service>
+      <service name="Sigma.Catalog.BusinessLogic.Notifications.NotificationService" behaviorConfiguration="defaultSecuredServiceBehaviour">
+        <endpoint binding="ws2007FederationHttpBinding" bindingConfiguration="defaultws2007FederationHttpBinding" contract="Sigma.Catalog.Contracts.Notifications.INotificationService"/>
+        <endpoint address="mex" binding="mexHttpsBinding" contract="IMetadataExchange"/>
+      </service>
+      <service name="Sigma.Catalog.BusinessLogic.ProductService" behaviorConfiguration="defaultSecuredServiceBehaviour">
+        <endpoint binding="ws2007FederationHttpBinding" bindingConfiguration="defaultws2007FederationHttpBinding" contract="Sigma.Catalog.Contracts.IProductService"/>
+        <endpoint address="mex" binding="mexHttpsBinding" contract="IMetadataExchange"/>
+      </service>
+      <service name="Sigma.Catalog.BusinessLogic.OmniformService" behaviorConfiguration="defaultSecuredServiceBehaviour">
+        <endpoint binding="ws2007FederationHttpBinding" bindingConfiguration="defaultws2007FederationHttpBinding" contract="Sigma.Catalog.Contracts.IOmniformService"/>
+        <endpoint address="mex" binding="mexHttpsBinding" contract="IMetadataExchange"/>
+      </service>
+      <service name="Sigma.Catalog.BusinessLogic.RatingService" behaviorConfiguration="defaultSecuredServiceBehaviour">
+        <endpoint binding="ws2007FederationHttpBinding" bindingConfiguration="defaultws2007FederationHttpBinding" contract="Sigma.Catalog.Contracts.IRatingService"/>
+        <endpoint address="mex" binding="mexHttpsBinding" contract="IMetadataExchange"/>
+      </service>
+      <service name="Sigma.Catalog.BusinessLogic.SchemaClasses.SchemaClassService" behaviorConfiguration="defaultSecuredServiceBehaviour">
+        <endpoint binding="ws2007FederationHttpBinding" bindingConfiguration="defaultws2007FederationHttpBinding" contract="Sigma.Catalog.Contracts.SchemaClasses.ISchemaClassService"/>
+        <endpoint address="mex" binding="mexHttpsBinding" contract="IMetadataExchange"/>
+      </service>
+      <service name="Sigma.Catalog.BusinessLogic.StatusService" behaviorConfiguration="defaultSecuredServiceBehaviour">
+        <endpoint binding="ws2007FederationHttpBinding" bindingConfiguration="defaultws2007FederationHttpBinding" contract="Sigma.Catalog.Contracts.IStatusService"/>
+        <endpoint address="mex" binding="mexHttpsBinding" contract="IMetadataExchange"/>
+      </service>
+      <service name="Sigma.Catalog.BusinessLogic.TemplateService" behaviorConfiguration="defaultSecuredServiceBehaviour">
+        <endpoint binding="ws2007FederationHttpBinding" bindingConfiguration="defaultws2007FederationHttpBinding" contract="Sigma.Catalog.Contracts.ITemplateService"/>
+        <endpoint address="mex" binding="mexHttpsBinding" contract="IMetadataExchange"/>
+      </service>
+      <service name="Sigma.Catalog.BusinessLogic.TemplateViewService" behaviorConfiguration="defaultSecuredServiceBehaviour">
+        <endpoint binding="ws2007FederationHttpBinding" bindingConfiguration="defaultws2007FederationHttpBinding" contract="Sigma.Catalog.Contracts.ITemplateViewService"/>
+        <endpoint address="mex" binding="mexHttpsBinding" contract="IMetadataExchange"/>
+      </service>
+      <service name="Sigma.Catalog.BusinessLogic.UserDataService" behaviorConfiguration="defaultSecuredServiceBehaviour">
+        <endpoint binding="ws2007FederationHttpBinding" bindingConfiguration="defaultws2007FederationHttpBinding" contract="Sigma.Catalog.Contracts.IUserDataService"/>
+        <endpoint address="mex" binding="mexHttpsBinding" contract="IMetadataExchange"/>
+      </service>
+      <service name="Sigma.Catalog.BusinessLogic.UserManagementService" behaviorConfiguration="defaultSecuredServiceBehaviour">
+        <endpoint binding="ws2007FederationHttpBinding" bindingConfiguration="defaultws2007FederationHttpBinding" contract="Sigma.Catalog.Contracts.IUserManagementService"/>
+        <endpoint address="mex" binding="mexHttpsBinding" contract="IMetadataExchange"/>
+      </service>
+      <service name="Sigma.Catalog.BusinessLogic.VersionService" behaviorConfiguration="defaultSecuredServiceBehaviour">
+        <endpoint binding="ws2007FederationHttpBinding" bindingConfiguration="defaultws2007FederationHttpBinding" contract="Sigma.Catalog.Contracts.IVersionService"/>
+        <endpoint address="mex" binding="mexHttpsBinding" contract="IMetadataExchange"/>
+      </service>
+      <service name="Sigma.Catalog.BusinessLogic.XSDService" behaviorConfiguration="defaultSecuredServiceBehaviour">
+        <endpoint binding="ws2007FederationHttpBinding" bindingConfiguration="defaultws2007FederationHttpBinding" contract="Sigma.Catalog.Contracts.IXsdService"/>
+        <endpoint address="mex" binding="mexHttpsBinding" contract="IMetadataExchange"/>
+      </service>
+      <service name="Sigma.Catalog.BusinessLogic.WorkflowPersistanceService" behaviorConfiguration="defaultSecuredServiceBehaviour">
+        <endpoint binding="ws2007FederationHttpBinding" bindingConfiguration="defaultws2007FederationHttpBinding" contract="Sigma.Catalog.Contracts.IWorkflowPersistanceService"/>
+        <endpoint address="mex" binding="mexHttpsBinding" contract="IMetadataExchange"/>
+      </service>
+      <service name="Sigma.Catalog.BusinessLogic.Workflow.WorkflowWrapper" behaviorConfiguration="defaultSecuredServiceBehaviour">
+        <endpoint binding="ws2007FederationHttpBinding" bindingConfiguration="defaultws2007FederationHttpBinding" contract="Sigma.Catalog.Contracts.IWorkflowWrapperService"/>
+        <endpoint address="mex" binding="mexHttpsBinding" contract="IMetadataExchange"/>
+      </service>
+      <service name="Sigma.Catalog.BusinessLogic.WorkflowDataService" behaviorConfiguration="defaultSecuredServiceBehaviour">
+        <endpoint binding="ws2007FederationHttpBinding" bindingConfiguration="defaultws2007FederationHttpBinding" contract="Sigma.Catalog.Contracts.IWorkflowDataService"/>
+        <endpoint address="mex" binding="mexHttpsBinding" contract="IMetadataExchange"/>
+      </service>
+      <service name="Sigma.Catalog.BusinessLogic.XsltService" behaviorConfiguration="defaultSecuredServiceBehaviour">
+        <endpoint binding="ws2007FederationHttpBinding" bindingConfiguration="defaultws2007FederationHttpBinding" contract="Sigma.Catalog.Contracts.IXsltService"/>
+        <endpoint address="mex" binding="mexHttpsBinding" contract="IMetadataExchange"/>
+      </service>
+      <service name="Sigma.Catalog.BusinessLogic.Service.Implementations.PPMSchemaClassService" behaviorConfiguration="defaultSecuredServiceBehaviour">
+        <endpoint binding="ws2007FederationHttpBinding" bindingConfiguration="defaultws2007FederationHttpBinding" contract="Sigma.Catalog.Services.ServiceContracts.Entities.IPPMSchemaClassService"/>
+        <endpoint address="mex" binding="mexHttpsBinding" contract="IMetadataExchange"/>
+      </service>
+      <service name="Sigma.Catalog.BusinessLogic.CpqDataService" behaviorConfiguration="defaultSecuredServiceBehaviour">
+        <endpoint binding="ws2007FederationHttpBinding" bindingConfiguration="defaultws2007FederationHttpBinding" contract="Sigma.Catalog.Contracts.ICpqDataService"/>
+        <endpoint address="mex" binding="mexHttpsBinding" contract="IMetadataExchange"/>
+      </service>
+      <service name="Sigma.Catalog.BusinessLogic.LogicalCatalogService" behaviorConfiguration="defaultSecuredServiceBehaviour">
+        <endpoint binding="ws2007FederationHttpBinding" bindingConfiguration="defaultws2007FederationHttpBinding" contract="Sigma.Catalog.Contracts.ILogicalCatalogService"/>
+        <endpoint address="mex" binding="mexHttpsBinding" contract="IMetadataExchange"/>
+      </service>
+      <service name="Sigma.Catalog.BusinessLogic.MonitorService" behaviorConfiguration="defaultSecuredServiceBehaviour">
+        <endpoint binding="ws2007FederationHttpBinding" bindingConfiguration="defaultws2007FederationHttpBinding" contract="Sigma.Catalog.Contracts.IMonitorService"/>
+        <endpoint address="mex" binding="mexHttpsBinding" contract="IMetadataExchange"/>
+      </service>
+      <service name="Sigma.Catalog.BusinessLogic.MoveService" behaviorConfiguration="defaultSecuredServiceBehaviour">
+        <endpoint binding="ws2007FederationHttpBinding" bindingConfiguration="defaultws2007FederationHttpBinding" contract="Sigma.Catalog.Contracts.IMoveService"/>
+        <endpoint address="mex" binding="mexHttpsBinding" contract="IMetadataExchange"/>
+      </service>
+      <service name="Sigma.Catalog.BusinessLogic.TypeGenerationService" behaviorConfiguration="defaultSecuredServiceBehaviour">
+        <endpoint binding="ws2007FederationHttpBinding" bindingConfiguration="defaultws2007FederationHttpBinding" contract="Sigma.Catalog.Contracts.ITypeGenerationService"/>
+        <endpoint address="mex" binding="mexHttpsBinding" contract="IMetadataExchange"/>
+      </service>
+      <service name="Sigma.Catalog.BusinessLogic.WebUserService" behaviorConfiguration="defaultSecuredServiceBehaviour">
+        <endpoint binding="ws2007FederationHttpBinding" bindingConfiguration="defaultws2007FederationHttpBinding" contract="Sigma.Catalog.Contracts.IWebUserService"/>
+        <endpoint address="mex" binding="mexHttpsBinding" contract="IMetadataExchange"/>
+      </service>
+    </services>
+    <client>
+      <endpoint address="https://management-aws-vocdev.vocus.sigma-systems.com/server" binding="wsHttpBinding" contract="Sigma.Catalog.Common.Management.Services.Interfaces.Management.IManagementService" name="IManagementServiceOperations"/>
+    </client>
+  </system.serviceModel>
+  <system.identityModel>
+    <identityConfiguration maximumClockSkew="00:15:00" saveBootstrapContext="true">
+      <certificateValidation certificateValidationMode="PeerOrChainTrust" revocationMode="Offline" trustedStoreLocation="LocalMachine"/>
+      <tokenReplayDetection enabled="true" expirationPeriod="500"/>
+      <securityTokenHandlers>
+        <remove type="System.IdentityModel.Tokens.Saml2SecurityTokenHandler, System.IdentityModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
+        <add type="Sigma.Authentication.Adapter.Tokens.CatalogSecurityTokenHandler, Sigma.Authentication.Adapter, Version=9.0.1.4, Culture=neutral, PublicKeyToken=cfa2c1ef2be18ddb"/>
+        <securityTokenHandlerConfiguration>
+          <audienceUris mode="Never"/>
+          <certificateValidation certificateValidationMode="PeerOrChainTrust" revocationMode="Offline" trustedStoreLocation="LocalMachine"/>
+          <issuerNameRegistry type="System.IdentityModel.Tokens.ConfigurationBasedIssuerNameRegistry, System.IdentityModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+            <trustedIssuers><add name="idp-signing-certificate" thumbprint="D2C161814E84B2137C81A80D97BA14A0ADF4CF41"/></trustedIssuers>
+          </issuerNameRegistry>
+          <tokenReplayDetection enabled="false" expirationPeriod="500"/>
+        </securityTokenHandlerConfiguration>
+      </securityTokenHandlers>
+    </identityConfiguration>
+  </system.identityModel>
+  <system.identityModel.services>
+    <federationConfiguration>
+      <cookieHandler mode="Default" requireSsl="true"/>
+      <serviceCertificate>
+        <certificateReference storeLocation="LocalMachine" storeName="My" x509FindType="FindByThumbprint" findValue="D2C161814E84B2137C81A80D97BA14A0ADF4CF41"/>
+      </serviceCertificate>
+    </federationConfiguration>
+  </system.identityModel.services>
+  <elmah>
+    <security allowRemoteAccess="true"/>
+    <errorLog type="Elmah.SqlErrorLog, Elmah" connectionStringName="ErrorLog"/>
+  </elmah>
+  <runtime>
+    <assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
+      <dependentAssembly>
+        <assemblyIdentity name="WebGrease" publicKeyToken="31BF3856AD364E35" culture="neutral"/>
+        <bindingRedirect oldVersion="0.0.0.0-1.6.5135.21930" newVersion="1.6.5135.21930"/>
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="Unity.Container" publicKeyToken="489B6ACCFAF20EF0" culture="neutral"/>
+        <bindingRedirect oldVersion="0.0.0.0-5.11.11.0" newVersion="5.11.11.0"/>
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="Unity.Abstractions" publicKeyToken="489B6ACCFAF20EF0" culture="neutral"/>
+        <bindingRedirect oldVersion="0.0.0.0-5.11.7.0" newVersion="5.11.7.0"/>
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.Web.Http" publicKeyToken="31BF3856AD364E35" culture="neutral"/>
+        <bindingRedirect oldVersion="0.0.0.0-5.3.0.0" newVersion="5.3.0.0"/>
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.Threading.Tasks.Extensions" publicKeyToken="CC7B13FFCD2DDD51" culture="neutral"/>
+        <bindingRedirect oldVersion="0.0.0.0-4.2.0.1" newVersion="4.2.0.1"/>
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.Runtime.CompilerServices.Unsafe" publicKeyToken="B03F5F7F11D50A3A" culture="neutral"/>
+        <bindingRedirect oldVersion="0.0.0.0-6.0.0.0" newVersion="6.0.0.0"/>
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.Net.Http.Formatting" publicKeyToken="31BF3856AD364E35" culture="neutral"/>
+        <bindingRedirect oldVersion="0.0.0.0-6.0.0.0" newVersion="6.0.0.0"/>
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.Memory" publicKeyToken="CC7B13FFCD2DDD51" culture="neutral"/>
+        <bindingRedirect oldVersion="0.0.0.0-4.0.1.2" newVersion="4.0.1.2"/>
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.IdentityModel.Tokens.Jwt" publicKeyToken="31BF3856AD364E35" culture="neutral"/>
+        <bindingRedirect oldVersion="0.0.0.0-6.35.0.0" newVersion="6.35.0.0"/>
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.Configuration.ConfigurationManager" publicKeyToken="CC7B13FFCD2DDD51" culture="neutral"/>
+        <bindingRedirect oldVersion="0.0.0.0-6.0.0.1" newVersion="6.0.0.1"/>
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.ComponentModel.Annotations" publicKeyToken="B03F5F7F11D50A3A" culture="neutral"/>
+        <bindingRedirect oldVersion="0.0.0.0-4.2.1.0" newVersion="4.2.1.0"/>
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.Buffers" publicKeyToken="CC7B13FFCD2DDD51" culture="neutral"/>
+        <bindingRedirect oldVersion="0.0.0.0-4.0.3.0" newVersion="4.0.3.0"/>
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="Newtonsoft.Json" publicKeyToken="30AD4FE6B2A6AEED" culture="neutral"/>
+        <bindingRedirect oldVersion="0.0.0.0-13.0.0.0" newVersion="13.0.0.0"/>
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="Microsoft.Web.Infrastructure" publicKeyToken="31BF3856AD364E35" culture="neutral"/>
+        <bindingRedirect oldVersion="0.0.0.0-2.0.0.0" newVersion="2.0.0.0"/>
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="Microsoft.Owin.Security" publicKeyToken="31BF3856AD364E35" culture="neutral"/>
+        <bindingRedirect oldVersion="0.0.0.0-4.2.2.0" newVersion="4.2.2.0"/>
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="Microsoft.Owin" publicKeyToken="31BF3856AD364E35" culture="neutral"/>
+        <bindingRedirect oldVersion="0.0.0.0-4.2.2.0" newVersion="4.2.2.0"/>
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="Microsoft.IdentityModel.Tokens" publicKeyToken="31BF3856AD364E35" culture="neutral"/>
+        <bindingRedirect oldVersion="0.0.0.0-6.35.0.0" newVersion="6.35.0.0"/>
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="Microsoft.Extensions.Primitives" publicKeyToken="ADB9793829DDAE60" culture="neutral"/>
+        <bindingRedirect oldVersion="0.0.0.0-6.0.0.0" newVersion="6.0.0.0"/>
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="Microsoft.Extensions.Options" publicKeyToken="ADB9793829DDAE60" culture="neutral"/>
+        <bindingRedirect oldVersion="0.0.0.0-6.0.0.0" newVersion="6.0.0.0"/>
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="Microsoft.Extensions.DependencyInjection.Abstractions" publicKeyToken="ADB9793829DDAE60" culture="neutral"/>
+        <bindingRedirect oldVersion="0.0.0.0-6.0.0.0" newVersion="6.0.0.0"/>
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="Microsoft.Bcl.AsyncInterfaces" publicKeyToken="CC7B13FFCD2DDD51" culture="neutral"/>
+        <bindingRedirect oldVersion="0.0.0.0-6.0.0.0" newVersion="6.0.0.0"/>
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="Antlr3.Runtime" publicKeyToken="EB42632606E9261F" culture="neutral"/>
+        <bindingRedirect oldVersion="0.0.0.0-3.5.0.2" newVersion="3.5.0.2"/>
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.Web.Http" publicKeyToken="31bf3856ad364e35" culture="neutral"/>
+        <bindingRedirect oldVersion="0.0.0.0-5.3.0.0" newVersion="5.3.0.0"/>
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.Net.Http.Formatting" publicKeyToken="31bf3856ad364e35" culture="neutral"/>
+        <bindingRedirect oldVersion="0.0.0.0-6.0.0.0" newVersion="6.0.0.0"/>
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.Threading.Tasks.Extensions" publicKeyToken="cc7b13ffcd2ddd51" culture="neutral"/>
+        <bindingRedirect oldVersion="0.0.0.0-4.2.0.1" newVersion="4.2.0.1"/>
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.Memory" publicKeyToken="cc7b13ffcd2ddd51" culture="neutral"/>
+        <bindingRedirect oldVersion="0.0.0.0-4.0.1.2" newVersion="4.0.1.2"/>
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.Buffers" publicKeyToken="cc7b13ffcd2ddd51" culture="neutral"/>
+        <bindingRedirect oldVersion="0.0.0.0-4.0.3.0" newVersion="4.0.3.0"/>
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="Microsoft.IdentityModel.Tokens" publicKeyToken="31bf3856ad364e35" culture="neutral"/>
+        <bindingRedirect oldVersion="0.0.0.0-6.35.0.0" newVersion="6.35.0.0"/>
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.IdentityModel.Tokens.Jwt" publicKeyToken="31bf3856ad364e35" culture="neutral"/>
+        <bindingRedirect oldVersion="0.0.0.0-6.35.0.0" newVersion="6.35.0.0"/>
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="Newtonsoft.Json" publicKeyToken="30ad4fe6b2a6aeed" culture="neutral"/>
+        <bindingRedirect oldVersion="0.0.0.0-13.0.0.0" newVersion="13.0.0.0"/>
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="Microsoft.Web.Infrastructure" publicKeyToken="31bf3856ad364e35" culture="neutral"/>
+        <bindingRedirect oldVersion="0.0.0.0-2.0.0.0" newVersion="2.0.0.0"/>
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="WebGrease" publicKeyToken="31bf3856ad364e35" culture="neutral"/>
+        <bindingRedirect oldVersion="0.0.0.0-1.6.5135.21930" newVersion="1.6.5135.21930"/>
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="Unity.Container" publicKeyToken="489b6accfaf20ef0" culture="neutral"/>
+        <bindingRedirect oldVersion="0.0.0.0-5.11.11.0" newVersion="5.11.11.0"/>
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="Unity.Abstractions" publicKeyToken="489b6accfaf20ef0" culture="neutral"/>
+        <bindingRedirect oldVersion="0.0.0.0-5.11.7.0" newVersion="5.11.7.0"/>
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="Antlr3.Runtime" publicKeyToken="eb42632606e9261f" culture="neutral"/>
+        <bindingRedirect oldVersion="0.0.0.0-3.5.0.2" newVersion="3.5.0.2"/>
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.Configuration.ConfigurationManager" publicKeyToken="cc7b13ffcd2ddd51" culture="neutral"/>
+        <bindingRedirect oldVersion="0.0.0.0-6.0.0.1" newVersion="6.0.0.1"/>
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="Microsoft.Extensions.Primitives" publicKeyToken="adb9793829ddae60" culture="neutral"/>
+        <bindingRedirect oldVersion="0.0.0.0-6.0.0.0" newVersion="6.0.0.0"/>
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.Text.Encodings.Web" publicKeyToken="cc7b13ffcd2ddd51" culture="neutral"/>
+        <bindingRedirect oldVersion="0.0.0.0-4.0.5.1" newVersion="4.0.5.1"/>
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="Microsoft.Owin.Security" publicKeyToken="31bf3856ad364e35" culture="neutral"/>
+        <bindingRedirect oldVersion="0.0.0.0-4.2.2.0" newVersion="4.2.2.0"/>
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="Microsoft.Owin" publicKeyToken="31bf3856ad364e35" culture="neutral"/>
+        <bindingRedirect oldVersion="0.0.0.0-4.2.2.0" newVersion="4.2.2.0"/>
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="Microsoft.Extensions.DependencyInjection.Abstractions" publicKeyToken="adb9793829ddae60" culture="neutral"/>
+        <bindingRedirect oldVersion="0.0.0.0-6.0.0.0" newVersion="6.0.0.0"/>
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="Microsoft.Extensions.Options" publicKeyToken="adb9793829ddae60" culture="neutral"/>
+        <bindingRedirect oldVersion="0.0.0.0-6.0.0.0" newVersion="6.0.0.0"/>
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="Microsoft.Bcl.AsyncInterfaces" publicKeyToken="cc7b13ffcd2ddd51" culture="neutral"/>
+        <bindingRedirect oldVersion="0.0.0.0-6.0.0.0" newVersion="6.0.0.0"/>
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.ComponentModel.Annotations" publicKeyToken="b03f5f7f11d50a3a" culture="neutral"/>
+        <bindingRedirect oldVersion="0.0.0.0-4.2.1.0" newVersion="4.2.1.0"/>
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.Runtime.CompilerServices.Unsafe" publicKeyToken="b03f5f7f11d50a3a" culture="neutral"/>
+        <bindingRedirect oldVersion="0.0.0.0-6.0.0.0" newVersion="6.0.0.0"/>
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.ValueTuple" publicKeyToken="cc7b13ffcd2ddd51" culture="neutral"/>
+        <bindingRedirect oldVersion="0.0.0.0-4.0.3.0" newVersion="4.0.3.0"/>
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="AngleSharp" publicKeyToken="e83494dcdc6d31ea" culture="neutral"/>
+        <bindingRedirect oldVersion="0.0.0.0-0.17.1.0" newVersion="0.17.1.0"/>
+      </dependentAssembly>
+    </assemblyBinding>
+  </runtime>
+</configuration>
+<!--ProjectGuid: D04B3D81-5492-48BA-9B94-EA9E209EDBF6-->
