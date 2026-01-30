@@ -1,3 +1,3 @@
-<?php
-        echo shell_exec('sh script.sh');
-    ?>
+<?php 
+echo "Hello,World!";
+?>
