@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title> Password Generator</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="card" role="main">
+    <header>
+      <div class="logo">PW</div>
+      <div>
+        <h1>Password Generator</h1>
+        <p class="lead">Generates secure random passwords with adjustable length and character sets. Built with arrays, string manipulation and Clipboard API.</p>
+      </div>
+    </header>
+
+    <section class="grid" style="margin-top:18px">
+      <!-- LEFT: controls -->
+      <div class="controls">
+        <div class="row">
+          <label for="length">Password length</label>
+          <div class="length-value" id="lengthValue">16</div>
+        </div>
+        <div style="margin-bottom:8px">
+          <input id="length" type="range" min="4" max="64" value="16" />
+        </div>
+
+        <div class="row">
+          <label class="small">Include characters</label>
+        </div>
+        <div class="checkboxes">
+          <label class="switch"><input id="lowercase" type="checkbox" checked /> <span class="small">Lowercase (a-z)</span></label>
+          <label class="switch"><input id="uppercase" type="checkbox" checked /> <span class="small">Uppercase (A-Z)</span></label>
+          <label class="switch"><input id="numbers" type="checkbox" checked /> <span class="small">Numbers (0-9)</span></label>
+          <label class="switch"><input id="symbols" type="checkbox" checked /> <span class="small">Symbols (!@#$...)</span></label>
+        </div>
+
+        <div style="margin-top:12px; display:flex; gap:10px;">
+          <button id="generateBtn" class="btn">Generate</button>
+          <button id="shuffleBtn" class="btn secondary">Regenerate</button>
+        </div>
+
+        <div style="margin-top:12px">
+          <label class="small">Options</label>
+          <div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap">
+            <label class="switch"><input id="avoidAmbiguous" type="checkbox" /> <span class="small">Avoid ambiguous chars (l,1,I,0,O)</span></label>
+            <label class="switch"><input id="includeSpaces" type="checkbox" /> <span class="small">Allow spaces</span></label>
+          </div>
+        </div>
+
+        <div style="margin-top:12px" class="small">Concepts used: arrays, random selection, string building, clipboard API, DOM manipulation.</div>
+      </div>
+
+      <!-- RIGHT: preview + copy -->
+      <aside class="preview">
+        <div class="password-box">
+          <div class="password-text" id="password">P@ssw0rd!Example123</div>
+          <div style="margin-left:auto; display:flex; gap:8px">
+            <button id="copyBtn" class="btn secondary">Copy</button>
+            <button id="eyeBtn" class="btn secondary">Hide</button>
+          </div>
+        </div>
+
+        <div>
+          <div class="meta">Strength</div>
+          <div class="strength" aria-hidden="true"><i id="strengthBar"></i></div>
+          <div class="meta" id="strengthText">Strong</div>
+        </div>
+
+        <div style="display:flex;gap:8px;align-items:center;">
+          <button id="downloadBtn" class="btn secondary">Download as .txt</button>
+          <div class="small" style="margin-left:auto">Tip: Click <strong>Copy</strong> to use the password instantly.</div>
+        </div>
+
+        <footer>Notes: Always keep a master copy of passwords in a reputable password manager.</footer>
+      </aside>
+    </section>
+
+    <section style="margin-top:18px">
+      <details style="background:transparent;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.02)">
+        <summary style="cursor:pointer">How it works (short)</summary>
+        <p class="small" style="margin-top:8px">The script creates arrays for each enabled character type, optionally filters ambiguous characters, then randomly picks characters until the requested length is reached. It ensures a good distribution by guaranteeing at least one character from each selected set (if possible).</p>
+      </details>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+

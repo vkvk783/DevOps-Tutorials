@@ -1,0 +1,188 @@
+/* Simple modern card style */
+:root {
+  --bg: #0f1724;
+  --card: #0b1220;
+  --accent: #7c3aed;
+  --muted: #9aa4b2;
+  --glass: rgba(255, 255, 255, 0.03);
+  --radius: 14px;
+  --pad: 20px;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: #002252;
+  color: #e6eef6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+}
+
+.card {
+  width: min(720px, 96%);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+  border-radius: var(--radius);
+  padding: 28px;
+  box-shadow: 0 10px 30px rgba(2, 6, 23, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.logo {
+  width: 56px;
+  height: 56px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--accent), #3b82f6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+}
+
+h1 {
+  font-size: 20px;
+  margin: 0;
+}
+
+p.lead {
+  margin: 6px 0 18px;
+  color: var(--muted);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 18px;
+}
+
+@media (max-width:800px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Left column */
+.controls {
+  background: var(--glass);
+  padding: 18px;
+  border-radius: 12px;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+label {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.length-value {
+  margin-left: auto;
+  font-weight: 600
+}
+
+.checkboxes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.switch {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.02);
+  padding: 10px;
+  border-radius: 10px;
+  width: 100%;
+}
+
+input[type=range] {
+  width: 100%;
+}
+
+/* Right column */
+.preview {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: stretch;
+}
+
+.password-box {
+  background: #071022;
+  padding: 18px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.password-text {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, 'Roboto Mono', monospace;
+  font-size: 16px;
+  word-break: break-all;
+}
+
+.btn {
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 0;
+  background: linear-gradient(90deg, var(--accent), #22c1c3);
+  color: white;
+  font-weight: 600;
+  cursor: pointer
+}
+
+.btn.secondary {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  color: var(--muted)
+}
+
+.strength {
+  height: 10px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.03);
+  overflow: hidden
+}
+
+.strength>i {
+  display: block;
+  height: 100%;
+  width: 0%;
+}
+
+.meta {
+  font-size: 13px;
+  color: var(--muted)
+}
+
+footer {
+  margin-top: 16px;
+  color: var(--muted);
+  font-size: 13px
+}
+
+/* tiny helpers */
+.small {
+  font-size: 13px;
+  color: var(--muted)
+}
