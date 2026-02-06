@@ -16,27 +16,41 @@ body {
   align-items: center;
 }
 
+/* Main card */
 .container {
   background: #ffffff;
   padding: 40px;
-  width: 380px;
+  width: 420px;
   text-align: center;
   border-radius: 12px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
 }
 
-h1 {
-  color: #333;
-  margin-bottom: 10px;
+/* Header row: text + button */
+.header-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  margin-bottom: 20px; /* ⭐ THIS FIXES THE MISSING LINE */
 }
 
+h1 {
+  color: #333;
+  font-weight: 600;
+  font-size: 22px;
+}
+
+/* Paragraph text */
 p {
   color: #666;
+  font-size: 14px;
   margin-bottom: 25px;
 }
 
+/* Button */
 button {
-  padding: 12px 25px;
+  padding: 12px 26px;
   background: #667eea;
   color: white;
   border: none;
@@ -50,5 +64,3 @@ button:hover {
   background: #764ba2;
   transform: scale(1.05);
 }
-
-
