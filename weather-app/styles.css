@@ -75,7 +75,7 @@ h1 {
 }
 
 .btn {
-  padding: 10px 14px;
+  padding: 13px 14px;
   border-radius: 8px;
   border: 0;
   background: linear-gradient(90deg, var(--accent), #7c3aed);
